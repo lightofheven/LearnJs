@@ -143,7 +143,66 @@
 // console.log(result);
 
 
-const number0Films = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
+
+
+// function sayHello(name) {
+//     return `Привет, ${name}!`;
+//     }
+//     sayHello('Антон');
+
+// function returnNeighboringNumbers(num) {
+//     return [num - 1, num, num + 1];
+//     }
+//     returnNeighboringNumbers(5);
+
+// function getMethResult(num, times) {
+//     if (typeof(times) !== 'number' || times <= 0) {
+//         return num;
+//     }
+
+//     let str = '';
+
+//     for (let i = 1; i <= times; i++) {
+//         if (i === times) {
+//             str += `${num * i}`;
+//             // Тут без черточек в конце
+//         } else {
+//             str += `${num * i}---`;
+//             // Это тоже самое, что и
+//             // str = str + num * i + "---"
+//         }
+//         console.log(str);
+//     }
+//     return str;
+// }
+
+// getMethResult(10,5);
+    
+
+// const usdCurr = 28;
+// const eurCurr = 32;
+// const rusCurr = 18; 
+
+// function convert(amount, curr,) {
+//     console.log(curr * amount);
+// }
+// convert(500, usdCurr);
+// convert(500, eurCurr);
+// convert(500, rusCurr);
+
+
+
+let number0Films;
+
+function start() {
+    number0Films = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
+    while (number0Films == '' || number0Films == null || isNaN(number0Films)) {
+        number0Films = +prompt('Сколько фильмов вы уже посмотрели?', '');
+    }
+}
+start();
 
 const personalMovieDB = {
     count: number0Films,
@@ -153,26 +212,44 @@ const personalMovieDB = {
     privat: false
 };
 
-for (let i = 0; i < 2; i++) {
-    const a = prompt('Один из последних просмотренный фильмов?', ''),
-          b = prompt('На сколько оцените его?', '');
-    
-    if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-        personalMovieDB.movies[a] = b;
-        console.log('done'); 
-    } else {
-        console.log('error');
-        i--;
+function rememberMyFimlms() {
+    for (let i = 0; i < 2; i++) {
+        const a = prompt('Один из последних просмотренный фильмов?', ''),
+              b = prompt('На сколько оцените его?', '');
+        
+        if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+            personalMovieDB.movies[a] = b;
+            console.log('done'); 
+        } else {
+            console.log('error');
+            i--;
+        }
     }
 }
- if (personalMovieDB.count < 10) {
-    console.log('Просмотрено довольно мало фильмов');
- } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-    console.log('Вы класический зритель');
- } else if (personalMovieDB.count >= 30) {
-    console.log('Вы киноман');
- } else {
-    console.log('Произошла ошибка');
+rememberMyFimlms();
+
+ function detectPersonalLevel() {
+    if (personalMovieDB.count < 10) {
+        console.log('Просмотрено довольно мало фильмов');
+     } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+        console.log('Вы класический зритель');
+     } else if (personalMovieDB.count >= 30) {
+        console.log('Вы киноман');
+     } else {
+        console.log('Произошла ошибка');
+     }
+ }
+ detectPersonalLevel();
+
+ function showMyDB () {
+    if (!personalMovieDB.privat) {
+        console.log(personalMovieDB);
+    }
  }
     
-console.log(personalMovieDB);
+function writeYourGeneres() {
+    for (let i = 1; i <= 3; i++) {
+        personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+    }
+}
+writeYourGeneres();
